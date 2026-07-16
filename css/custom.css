@@ -1,0 +1,781 @@
+/* ============================================
+   CONÓCETE A TI MISMO — CUSTOM.CSS
+   ============================================ */
+
+/* ===== VARIABLES ===== */
+:root {
+  --arena: #E8DCC4;
+  --arena-oscura: #C9B896;
+  --piedra: #8B7355;
+  --piedra-oscura: #5C4A32;
+  --oro: #C9A84C;
+  --oro-brillante: #E8C96A;
+  --azul-nilo: #1E3A5F;
+  --azul-noche: #0F1F33;
+  --texto: #2C2416;
+  --blanco-arena: #F5F0E6;
+}
+
+/* ===== RESET Y BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--blanco-arena);
+  color: var(--texto);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== BANNER ===== */
+.banner {
+  background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-nilo) 50%, #2A4A6F 100%);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--oro);
+}
+
+.banner::before,
+.banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--oro) 0px, var(--oro) 3px,
+    transparent 3px, transparent 12px
+  );
+  opacity: 0.3;
+}
+
+.banner::before { left: 20px; }
+.banner::after { right: 20px; }
+
+.banner h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  color: var(--oro-brillante);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  letter-spacing: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: var(--arena);
+  margin-top: 0.5rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ===== MENÚ ===== */
+.nav-bar {
+  background: linear-gradient(180deg, var(--piedra-oscura) 0%, var(--piedra) 100%);
+  border-bottom: 3px solid var(--oro);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.nav-bar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nav-bar li { position: relative; }
+
+.nav-bar li:not(:last-child)::after {
+  content: '◆';
+  color: var(--oro);
+  font-size: 0.6rem;
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-bar a {
+  display: block;
+  padding: 1rem 2rem;
+  color: var(--blanco-arena);
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-bar a::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--oro-brillante);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-bar a:hover {
+  color: var(--oro-brillante);
+  background: rgba(201,168,76,0.1);
+}
+
+.nav-bar a:hover::after { width: 60%; }
+
+.nav-bar .active {
+  color: var(--oro-brillante);
+  background: rgba(201,168,76,0.15);
+}
+
+/* ===== CONTENIDO ===== */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(180deg, var(--blanco-arena) 0%, var(--arena) 100%);
+  position: relative;
+}
+
+.temple-container {
+  display: flex;
+  max-width: 1100px;
+  width: 100%;
+  gap: 0;
+  position: relative;
+}
+
+/* ===== COLUMNA EGIPCIA ===== */
+.egyptian-column {
+  width: 70px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ICONO SOBRE LA COLUMNA */
+.column-icon {
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  background: var(--blanco-arena);
+  border: 2px solid var(--oro);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 4px;
+}
+
+.column-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Capitel */
+.column-capital {
+  width: 85px;
+  height: 35px;
+  background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+  border-radius: 8px 8px 4px 4px;
+  border: 2px solid var(--oro);
+  position: relative;
+  box-shadow: inset 0 -3px 8px rgba(0,0,0,0.3);
+}
+
+.column-capital::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 12px;
+  background: var(--oro);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Fuste */
+.column-shaft {
+  flex: 1;
+  width: 55px;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--piedra) 0px, var(--piedra) 18px,
+    var(--piedra-oscura) 18px, var(--piedra-oscura) 20px
+  );
+  border-left: 2px solid var(--oro);
+  border-right: 2px solid var(--oro);
+  position: relative;
+  box-shadow: inset 5px 0 15px rgba(0,0,0,0.2), inset -5px 0 15px rgba(0,0,0,0.2);
+}
+
+.column-shaft::before {
+  content: '☥ ☥ ☥';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--oro);
+  font-size: 0.7rem;
+  opacity: 0.4;
+  writing-mode: vertical-rl;
+  letter-spacing: 8px;
+}
+
+/* Base */
+.column-base {
+  width: 75px;
+  height: 25px;
+  background: linear-gradient(180deg, var(--piedra-oscura) 0%, var(--piedra) 100%);
+  border-radius: 2px 2px 6px 6px;
+  border: 2px solid var(--oro);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== ÁREA DE CONTENIDO ===== */
+.content-area {
+  flex: 1;
+  background: var(--blanco-arena);
+  border-top: 3px solid var(--oro);
+  border-bottom: 3px solid var(--oro);
+  padding: 2.5rem 3rem;
+  min-height: 400px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.content-area::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid rgba(201,168,76,0.2);
+  pointer-events: none;
+}
+
+.content-area h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: var(--azul-nilo);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--oro);
+  display: inline-block;
+}
+
+.content-area h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--piedra-oscura);
+  margin: 1.5rem 0 0.8rem;
+}
+
+.content-area p {
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-size: 1.05rem;
+}
+
+.content-area blockquote {
+  border-left: 4px solid var(--oro);
+  padding-left: 1.2rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--piedra-oscura);
+  background: rgba(232,220,196,0.3);
+  padding: 1rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* ===== ESCALERAS ===== */
+.stairs-section {
+  background: linear-gradient(180deg, var(--arena) 0%, var(--arena-oscura) 100%);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stairs-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stair {
+  height: 18px;
+  background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+  border-top: 2px solid var(--oro);
+  border-left: 2px solid var(--oro);
+  border-right: 2px solid var(--oro);
+  position: relative;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+}
+
+.stair::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 10%; right: 10%;
+  height: 2px;
+  background: rgba(201,168,76,0.3);
+}
+
+.stair-0 { width: 8%; border-radius: 4px 4px 0 0; }
+.stair-1 { width: 20%; }
+.stair-2 { width: 35%; }
+.stair-3 { width: 50%; }
+.stair-4 { width: 65%; }
+.stair-5 { width: 80%; }
+.stair-6 { width: 95%; border-radius: 0 0 2px 2px; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: linear-gradient(180deg, var(--azul-nilo) 0%, var(--azul-noche) 100%);
+  color: var(--arena);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 4px solid var(--oro);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--oro) 0px, var(--oro) 15px,
+    var(--oro-brillante) 15px, var(--oro-brillante) 30px
+  );
+}
+
+.footer-content { max-width: 800px; margin: 0 auto; }
+
+.footer h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--oro-brillante);
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.footer p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.5rem; }
+
+.footer a {
+  color: var(--oro-brillante);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover { color: var(--blanco-arena); text-decoration: underline; }
+
+.footer-divider {
+  width: 60px; height: 2px;
+  background: var(--oro);
+  margin: 1rem auto;
+  opacity: 0.5;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-top: 1rem;
+  font-family: 'Cinzel', serif;
+}
+
+/* ===== SUCESIÓN DE GRANDES MAESTROS ===== */
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--azul-nilo);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--oro);
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.maestros-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.maestro-item {
+  position: relative;
+  padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(232,220,196,0.4) 0%, rgba(245,240,230,0.8) 100%);
+  border-left: 4px solid var(--oro);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.maestro-item:hover {
+  background: linear-gradient(135deg, rgba(232,220,196,0.7) 0%, rgba(245,240,230,0.9) 100%);
+  transform: translateX(4px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Número romano decorativo */
+.maestro-item::before {
+  content: attr(data-numero);
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--oro);
+  opacity: 0.6;
+}
+
+.maestro-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+  display: block;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.maestro-nombre::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--oro) 0%, transparent 100%);
+  margin-top: 0.3rem;
+}
+
+.maestro-desc {
+  font-size: 0.95rem;
+  color: var(--piedra-oscura);
+  line-height: 1.6;
+}
+
+.maestro-desc strong {
+  color: #8B2E2E;
+  font-weight: 600;
+}
+
+/* ============================================
+   3. NUESTRO RITO — FORMATO ELEGANTE
+   ============================================ */
+
+.rito-seccion {
+  margin: 2rem 0;
+}
+
+/* ===== ENCABEZADO ===== */
+.rito-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.rito-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--oro) 50%, transparent 100%);
+}
+
+.rito-numero {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--oro);
+  opacity: 0.4;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.rito-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--azul-nilo);
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+}
+
+.rito-subtitulo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--piedra);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ===== INTRODUCCIÓN ===== */
+.rito-intro {
+  font-size: 1.05rem;
+  text-align: justify;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.rito-intro strong {
+  color: var(--rojo-egipcio);
+  font-weight: 600;
+}
+
+/* ===== CITA DESTACADA ===== */
+.rito-cita {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.5rem 2rem 1.5rem 3rem;
+  background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(232,220,196,0.3) 100%);
+  border-left: 4px solid var(--oro);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: var(--piedra-oscura);
+  font-size: 1.1rem;
+}
+
+.rito-cita::before {
+  content: '"';
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  color: var(--oro);
+  opacity: 0.3;
+  position: absolute;
+  top: -0.3rem;
+  left: 0.8rem;
+  line-height: 1;
+}
+
+/* ===== PILARES NUMÉRICOS ===== */
+.pilares-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.pilares-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--piedra);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.pilares-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.pilar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(180deg, var(--blanco-arena) 0%, rgba(232,220,196,0.5) 100%);
+  border: 2px solid var(--oro);
+  border-radius: 8px;
+  min-width: 120px;
+  transition: all 0.3s ease;
+}
+
+.pilar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.pilar-numero {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--oro);
+  line-height: 1;
+}
+
+.pilar-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--azul-nilo);
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+/* ===== TRABAJO INTERIOR ===== */
+.trabajo-header {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--azul-nilo);
+  text-align: center;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--oro);
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.trabajo-lema {
+  text-align: center;
+  font-style: italic;
+  color: var(--piedra-oscura);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.trabajo-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trabajo-item {
+  position: relative;
+  padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(232,220,196,0.3) 0%, rgba(245,240,230,0.6) 100%);
+  border-left: 4px solid var(--piedra);
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.trabajo-item:hover {
+  background: linear-gradient(135deg, rgba(232,220,196,0.6) 0%, rgba(245,240,230,0.8) 100%);
+  transform: translateX(4px);
+}
+
+.trabajo-item::before {
+  content: attr(data-simbolo);
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.trabajo-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--azul-noche);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.trabajo-desc {
+  font-size: 0.95rem;
+  color: var(--piedra-oscura);
+}
+
+/* ===== CIERRE ===== */
+.rito-cierre {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--piedra-oscura);
+  background: linear-gradient(180deg, transparent 0%, rgba(232,220,196,0.4) 100%);
+  border-top: 1px solid rgba(201,168,76,0.3);
+}
+
+.rito-cierre strong {
+  color: var(--azul-nilo);
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .rito-titulo { font-size: 1.2rem; }
+  .rito-subtitulo { font-size: 0.8rem; letter-spacing: 2px; }
+  .pilares-grid { gap: 1rem; }
+  .pilar { min-width: 100px; padding: 0.8rem 1rem; }
+  .rito-cita { padding: 1.2rem 1.5rem 1.2rem 2.5rem; }
+  .trabajo-item { padding: 1rem 1rem 1rem 3rem; }
+}
+
+
+@media (max-width: 480px) {
+  .maestro-item { padding: 1rem 1rem 1rem 2.8rem; }
+  .maestro-nombre { font-size: 1rem; }
+  .maestro-item::before { font-size: 1.1rem; left: 0.5rem; }
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .egyptian-column { display: none; }
+  
+  .content-area {
+    padding: 1.5rem;
+    border-left: 3px solid var(--oro);
+    border-right: 3px solid var(--oro);
+  }
+  
+  .nav-bar a {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  
+  .nav-bar li:not(:last-child)::after { display: none; }
+  .banner h1 { letter-spacing: 1px; }
+  .stair { height: 14px; }
+}
+
+@media (max-width: 480px) {
+  .nav-bar ul { flex-direction: column; }
+  .nav-bar li { width: 100%; text-align: center; }
+  .nav-bar a { padding: 0.7rem; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .nav-bar li:not(:last-child)::after { display: none; }
+  .content-area { padding: 1rem; }
+  .banner { padding: 1.5rem 0.5rem; }
+}
