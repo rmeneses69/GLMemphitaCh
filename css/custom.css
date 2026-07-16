@@ -875,13 +875,18 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .egyptian-column { display: none; }
+  .egyptian-column,
+  .egyptian-column-img { 
+    display: none; 
+  }
   
   .content-area {
     padding: 1.5rem;
     border-left: 3px solid var(--oro);
     border-right: 3px solid var(--oro);
   }
+
+}
   
   .nav-bar a {
     padding: 0.8rem 1.2rem;
