@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Historia</title>
+  <title>Nuestro Rito — Gran Logia Memphita de Chile</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="img/favicon-16x16.png">
-  <link rel="shortcut icon" href="img/favicon-16x16.png.ico">
-  <link rel="apple-touch-icon" href="img/favicon-16x16.png.png">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -18,20 +16,34 @@
 </head>
 <body>
 
-  <!-- ===== BANNER ===== -->
+  <!-- ===== BANNER CON ÍCONOS ===== -->
   <header class="banner">
-    <h1>Conócete a ti mismo</h1>
-    <p class="banner-sub">γνῶθι σεαυτόν · Know Thyself</p>
+    <div class="banner-content">
+      
+      <div class="banner-icon banner-icon-left">
+        <img src="img/Logo_GLMCh_02.png" alt="Gran Logia Memphita de Chile">
+      </div>
+      
+      <div class="banner-text">
+        <h1>Conócete a ti mismo</h1>
+        <p class="banner-sub">γνῶθι σεαυτόν · Know Thyself</p>
+      </div>
+      
+      <div class="banner-icon banner-icon-right">
+        <img src="img/Logo_SoberanoSantuario.png" alt="Soberano Santuario">
+      </div>
+
+    </div>
   </header>
 
-  <!-- ===== MENÚ ===== -->
+  <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
   <nav class="nav-bar">
     <ul>
       <li><a href="index.html">Inicio</a></li>
-    <li><a href="quienes_somos.html">Quiénes somos</a></li>      
-      <li><a href="historia.html" class="active">Historia</a></li>
-      <li><a href="nuestro_rito.html">Nuestro Rito</a></li>
-      <li><a href="contactanos.html">Contáctanos</a></li>
+      <li><a href="quienes-somos.html">Quiénes somos</a></li>
+      <li><a href="historia.html">Historia</a></li>
+      <li><a href="nuestro-rito.html" class="active">Nuestro Rito</a></li>
+      <li><a href="contacto.html">Contáctanos</a></li>
     </ul>
   </nav>
 
@@ -39,16 +51,17 @@
   <main class="main-wrapper">
     <div class="temple-container">
 
-      <!-- Columna izquierda con icono -->
-    <aside class="egyptian-column-img" aria-hidden="true">
+      <!-- Columna izquierda -->
+      <aside class="egyptian-column-img" aria-hidden="true">
         <img src="img/ColumnaEgipcia.png" alt="Columna egipcia decorativa">
-    </aside>
+      </aside>
 
       <!-- Área de contenido -->
       <article class="content-area">
         <h2>Historia</h2>
+
         <p>
-          <h3>Orígenes Mundiales </h3>
+          <h3>Orígenes Mundiales</h3>
           El rito tiene sus raíces en las tradiciones de la masonería egipcia del siglo XVIII, destacando el Rito Primitivo de los 
           Philadelphos (1779) y el Rito de Mizraïm (1801). Tras la expedición de Napoleón a Egipto, el interés por la cultura faraónica 
           creció, llevando a Jacques Étienne Marconis de Nègre a organizar oficialmente el Rito de Memphis entre 1838 y 1839 en Francia.
@@ -64,7 +77,7 @@
 
           <li class="maestro-item" data-numero="II">
             <span class="maestro-nombre">Siglo XX</span>
-            <span class="maestro-desc">La tradición fue preservada por figuras como Otto Reszczynski Ramírez y Alfredo Utrera Tournier, con una reorganización clave en la década de 1960 gracias a nuevas cartas patentes europeas..</span>
+            <span class="maestro-desc">La tradición fue preservada por figuras como Otto Reszczynski Ramírez y Alfredo Utrera Tournier, con una reorganización clave en la década de 1960 gracias a nuevas cartas patentes europeas.</span>
           </li>
 
           <li class="maestro-item" data-numero="III">
@@ -72,21 +85,21 @@
             <span class="maestro-desc">El 13 de febrero de 2010 se funda la Gran Logia Nacional de Chile, obteniendo meses después el reconocimiento internacional de la Sociedad de Grandes Logias en Alianza (SOGLIA).</span>
           </li>
         </ul>
-
+      
       </article>
 
-      <!-- Columna derecha con icono -->
-    <aside class="egyptian-column-img" aria-hidden="true">
+      <!-- Columna derecha -->
+      <aside class="egyptian-column-img" aria-hidden="true">
         <img src="img/ColumnaEgipcia.png" alt="Columna egipcia decorativa">
-    </aside>
+      </aside>
 
     </div>
   </main>
 
-  <!-- ===== ESCALERAS ===== -->
+  <!-- ===== ESCALERAS CON ANIMACIÓN ===== -->
   <section class="stairs-section" aria-hidden="true">
     <div class="stairs-container">
-      <div class="stair stair-0"></div>
+      <div class="stair stair-0"></div>  
       <div class="stair stair-1"></div>
       <div class="stair stair-2"></div>
       <div class="stair stair-3"></div>
@@ -102,14 +115,18 @@
       <h3>Contáctanos</h3>
       <p>
         ¿Tienes preguntas o deseas saber más?<br>
-        Escríbenos a <a href="mailto:contacto@ejemplo.com">contacto@ejemplo.com</a>
+        Escríbenos a <a href="mailto:contacto@granlogia.cl">contacto@granlogia.cl</a>
       </p>
       <div class="footer-divider"></div>
       <p class="copyright">
-        © 2026 Conócete a ti mismo. Todos los derechos reservados.
+        © 2026 Gran Logia Memphita de Chile. Todos los derechos reservados.
       </p>
     </div>
   </footer>
 
+  <!-- jQuery y Bootstrap JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>

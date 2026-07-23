@@ -24,7 +24,7 @@
 }
 
 body {
-  font-family: 'Lora', Georgia, serif;
+  font-family:var(--font-lora), Georgia, serif;
   background: var(--blanco-arena);
   color: var(--texto);
   line-height: 1.7;
@@ -61,6 +61,39 @@ body {
 .banner::before { left: 20px; }
 .banner::after { right: 20px; }
 
+/* Nuevo contenedor flex para alinear íconos y texto */
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.banner-icon {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.5));
+}
+
+.banner-text {
+  flex: 1;
+  text-align: center;
+}
+
 .banner h1 {
   font-family: 'Cinzel', serif;
   font-size: clamp(1.8rem, 5vw, 3.2rem);
@@ -81,6 +114,18 @@ body {
   opacity: 0.8;
 }
 
+/* Responsive para el banner con íconos */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .banner-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
 /* ===== MENÚ ===== */
 .nav-bar {
   background: linear-gradient(180deg, var(--piedra-oscura) 0%, var(--piedra) 100%);
@@ -118,7 +163,7 @@ body {
   padding: 1rem 2rem;
   color: var(--blanco-arena);
   text-decoration: none;
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 0.95rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -168,20 +213,22 @@ body {
   position: relative;
 }
 
-/* ===== COLUMNA EGIPCIA CON IMAGEN - CONTAIN CENTRADO ===== */
+/* ===== COLUMNA EGIPCIA FLOTANTE (STICKY) ===== */
 .egyptian-column-img {
   width: 250px;
   flex-shrink: 0;
   display: flex;
-  align-items: center;      /* Centrado vertical */
-  justify-content: center;  /* Centrado horizontal */
-  position: relative;
-  min-height: 300px;        /* Altura mínima para que se vea bien */
+  align-items: flex-start; /* La imagen se alinea arriba */
+  justify-content: center;
+  position: sticky; /* Hace que la columna se "pegue" al hacer scroll */
+  top: 100px; /* Distancia desde el tope de la ventana cuando se pega */
+  height: fit-content; /* La columna solo ocupa lo que necesita */
+  align-self: flex-start; /* Permite que sticky funcione correctamente */
 }
 
 .egyptian-column-img img {
   width: 100%;
-  max-height: 100%;
+  max-height: 80vh; /* La imagen no será más alta que el 80% de la ventana */
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(3px 0 8px rgba(0,0,0,0.25));
@@ -295,14 +342,14 @@ body {
   border-bottom: 3px solid var(--oro);
   padding: 2.5rem 3rem;
   min-height: 400px;
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(0,0,0,0.08),
     0 8px 25px rgba(0,0,0,0.06);    /* Sombra inferior elegante */
   position: relative;
 }
 
 .content-area:hover {
-  box-shadow: 
+  box-shadow:
     0 0 40px rgba(0,0,0,0.1),
     0 12px 35px rgba(0,0,0,0.08);   /* Sombra más pronunciada al pasar el mouse */
 }
@@ -316,7 +363,7 @@ body {
 }
 
 .content-area h2 {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.8rem;
   color: var(--azul-nilo);
   margin-bottom: 1.2rem;
@@ -326,7 +373,7 @@ body {
 }
 
 .content-area h3 {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.2rem;
   color: var(--piedra-oscura);
   margin: 1.5rem 0 0.8rem;
@@ -350,6 +397,7 @@ body {
 }
 
 /* ===== ESCALERAS ===== */
+/* ===== ESCALERAS ===== */
 .stairs-section {
   background: linear-gradient(180deg, var(--arena) 0%, var(--arena-oscura) 100%);
   padding: 0;
@@ -366,6 +414,7 @@ body {
   align-items: center;
 }
 
+/* Animación base para todos los peldaños */
 .stair {
   height: 18px;
   background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
@@ -374,6 +423,9 @@ body {
   border-right: 2px solid var(--oro);
   position: relative;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .stair::after {
@@ -384,14 +436,143 @@ body {
   background: rgba(201,168,76,0.3);
 }
 
-.stair-0 { width: 8%; border-radius: 4px 4px 0 0; }
-.stair-1 { width: 20%; }
-.stair-2 { width: 35%; }
-.stair-3 { width: 50%; }
-.stair-4 { width: 65%; }
-.stair-5 { width: 80%; }
-.stair-6 { width: 95%; border-radius: 0 0 2px 2px; }
+/* Cada peldaño tiene su propia animación con delay diferente */
+.stair-0 {
+  width: 8%;
+  border-radius: 4px 4px 0 0;
+  animation-name: glowStair0;
+}
+.stair-1 {
+  width: 20%;
+  animation-name: glowStair1;
+}
+.stair-2 {
+  width: 35%;
+  animation-name: glowStair2;
+}
+.stair-3 {
+  width: 50%;
+  animation-name: glowStair3;
+}
+.stair-4 {
+  width: 65%;
+  animation-name: glowStair4;
+}
+.stair-5 {
+  width: 80%;
+  animation-name: glowStair5;
+}
+.stair-6 {
+  width: 95%;
+  border-radius: 0 0 2px 2px;
+  animation-name: glowStair6;
+}
 
+/* ===== KEYFRAMES DE ENCENDIDO SECUENCIAL ===== */
+/* Ciclo de 8 segundos:
+   - 0% a 43.75% (3.5s): encendido ascendente (de stair-6 a stair-0)
+   - 43.75% a 50% (0.5s): pausa con todo encendido
+   - 50% a 93.75% (3.5s): apagado descendente (de stair-0 a stair-6)
+   - 93.75% a 100% (0.5s): pausa con todo apagado
+*/
+
+/* stair-6 (base): se enciende PRIMERO, se apaga ÚLTIMO */
+@keyframes glowStair6 {
+  0%, 93.75% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  6.25%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-5: se enciende segundo, se apaga segundo al final */
+@keyframes glowStair5 {
+  0%, 6.25%, 87.5%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  12.5%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-4: se enciende tercero */
+@keyframes glowStair4 {
+  0%, 12.5%, 81.25%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  18.75%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-3: se enciende cuarto */
+@keyframes glowStair3 {
+  0%, 18.75%, 75%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  25%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-2: se enciende quinto */
+@keyframes glowStair2 {
+  0%, 25%, 68.75%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  31.25%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-1: se enciende sexto */
+@keyframes glowStair1 {
+  0%, 31.25%, 62.5%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  37.5%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
+
+/* stair-0 (cima): se enciende ÚLTIMO, se apaga PRIMERO */
+@keyframes glowStair0 {
+  0%, 37.5%, 56.25%, 100% {
+    background: linear-gradient(180deg, var(--piedra) 0%, var(--piedra-oscura) 100%);
+    border-color: var(--oro);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+  }
+  43.75%, 50% {
+    background: linear-gradient(180deg, var(--oro-brillante) 0%, var(--oro) 100%);
+    border-color: var(--oro-brillante);
+    box-shadow: 0 0 20px rgba(232,201,106,0.8), 0 -2px 8px rgba(0,0,0,0.2);
+  }
+}
 /* ===== FOOTER ===== */
 .footer {
   background: linear-gradient(180deg, var(--azul-nilo) 0%, var(--azul-noche) 100%);
@@ -417,7 +598,7 @@ body {
 .footer-content { max-width: 800px; margin: 0 auto; }
 
 .footer h3 {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   color: var(--oro-brillante);
   font-size: 1.1rem;
   margin-bottom: 0.8rem;
@@ -445,13 +626,13 @@ body {
   font-size: 0.8rem;
   opacity: 0.6;
   margin-top: 1rem;
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
 }
 
 /* ===== SUCESIÓN DE GRANDES MAESTROS ===== */
 
 .section-title {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.4rem;
   color: var(--azul-nilo);
   margin-bottom: 1.5rem;
@@ -490,7 +671,7 @@ body {
   left: 0.8rem;
   top: 50%;
   transform: translateY(-50%);
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--oro);
@@ -498,7 +679,7 @@ body {
 }
 
 .maestro-nombre {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--azul-noche);
@@ -555,7 +736,7 @@ body {
 }
 
 .rito-numero {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--oro);
@@ -566,7 +747,7 @@ body {
 }
 
 .rito-titulo {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--azul-nilo);
@@ -575,7 +756,7 @@ body {
 }
 
 .rito-subtitulo {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 0.95rem;
   color: var(--piedra);
   letter-spacing: 3px;
@@ -611,7 +792,7 @@ body {
 
 .rito-cita::before {
   content: '"';
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 3rem;
   color: var(--oro);
   opacity: 0.3;
@@ -628,7 +809,7 @@ body {
 }
 
 .pilares-label {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 0.85rem;
   color: var(--piedra);
   letter-spacing: 4px;
@@ -662,7 +843,7 @@ body {
 }
 
 .pilar-numero {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--oro);
@@ -670,7 +851,7 @@ body {
 }
 
 .pilar-nombre {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 0.85rem;
   color: var(--azul-nilo);
   margin-top: 0.5rem;
@@ -679,7 +860,7 @@ body {
 
 /* ===== TRABAJO INTERIOR ===== */
 .trabajo-header {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.2rem;
   color: var(--azul-nilo);
   text-align: center;
@@ -732,7 +913,7 @@ body {
 }
 
 .trabajo-titulo {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-cinzel), serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--azul-noche);
@@ -876,24 +1057,22 @@ body {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .egyptian-column,
-  .egyptian-column-img { 
-    display: none; 
+  .egyptian-column-img {
+    display: none;
   }
-  
+
   .content-area {
     padding: 1.5rem;
     border-left: 3px solid var(--oro);
     border-right: 3px solid var(--oro);
   }
 
-}
-  
   .nav-bar a {
     padding: 0.8rem 1.2rem;
     font-size: 0.8rem;
     letter-spacing: 1px;
   }
-  
+
   .nav-bar li:not(:last-child)::after { display: none; }
   .banner h1 { letter-spacing: 1px; }
   .stair { height: 14px; }
@@ -906,4 +1085,19 @@ body {
   .nav-bar li:not(:last-child)::after { display: none; }
   .content-area { padding: 1rem; }
   .banner { padding: 1.5rem 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .maestro-item { padding: 1rem 1rem 1rem 2.8rem; }
+  .maestro-nombre { font-size: 1rem; }
+  .maestro-item::before { font-size: 1.1rem; left: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .rito-titulo { font-size: 1.2rem; }
+  .rito-subtitulo { font-size: 0.8rem; letter-spacing: 2px; }
+  .pilares-grid { gap: 1rem; }
+  .pilar { min-width: 100px; padding: 0.8rem 1rem; }
+  .rito-cita { padding: 1.2rem 1.5rem 1.2rem 2.5rem; }
+  .trabajo-item { padding: 1rem 1rem 1rem 3rem; }
 }
