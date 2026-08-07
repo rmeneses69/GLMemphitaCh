@@ -39,11 +39,11 @@
   <!-- ===== MENÚ DE NAVEGACIÓN ===== -->
   <nav class="nav-bar">
     <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="quienes-somos.html">Quiénes somos</a></li>
-      <li><a href="historia.html">Historia</a></li>
-      <li><a href="nuestro-rito.html" class="active">Nuestro Rito</a></li>
-      <li><a href="contacto.html">Contáctanos</a></li>
+      <li><a href="index.html?pagina=1" data-pagina="1">Inicio</a></li>
+      <li><a href="index.html?pagina=2" data-pagina="2">Quiénes somos</a></li>
+      <li><a href="index.html?pagina=3" data-pagina="3">Historia</a></li>
+      <li><a href="index.html?pagina=4" data-pagina="4">Nuestro Rito</a></li>
+      <li><a href="index.html?pagina=5" data-pagina="5">Contáctanos</a></li>
     </ul>
   </nav>
 
@@ -57,24 +57,8 @@
       </aside>
 
       <!-- Área de contenido -->
-      <article class="content-area">
-        <h2>Bienvenidos a la Gran Logia Memphita de Chile</h2>
-        <p>
-          La masonería es una de las más antiguas y fecundas escuelas iniciáticas de la humanidad, 
-          dedicada al perfeccionamiento integral del ser humano a través de un patrimonio simbólico y filosófico milenario. 
-          Nuestra obediencia busca despertar la <strong>Luz interior</strong>, cultivando la Sabiduría, la Fuerza y la Belleza para contribuir a la 
-          construcción del gran Templo de la Humanidad.
-        </p>
-
-        <blockquote>
-          "El hombre que se conoce a sí mismo es el más sabio de todos."
-        </blockquote>
-
-        <p>
-          Bajo la bóveda de nuestra institución, el iniciado recorre un camino de transformación orientado al conocimiento 
-          de sí mismo y a la reintegración consciente con el Gran Arquitecto de los Mundos.
-        </p>
-      </article>
+        <article class="content-area" id="contenido" data-pagina="inicio">
+        </article>        
 
       <!-- Columna derecha -->
       <aside class="egyptian-column-img" aria-hidden="true">
@@ -115,6 +99,7 @@
   <!-- jQuery y Bootstrap JS -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/cargar-contenido.js"></script>
   
 </body>
 </html>
